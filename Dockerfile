@@ -42,3 +42,11 @@ RUN apt-get --quiet --yes update && \
     && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+
+RUN cd /opt && wget --quiet \
+    https://dl.google.com/android/repository/android-ndk-r16b-linux-x86_64.zip\
+    && unzip android-ndk-r16b-linux-x86_64.zip \
+    && mv android-ndk-r16b ndk \
+    && rm android-ndk-r16b-linux-x86_64.zip \
+    && /opt/ndk/build/tools/make_standalone_toolchain.py --arch arm64 \
+       --api 26 --install-dir /opt/android-toolchain
