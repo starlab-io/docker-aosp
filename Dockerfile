@@ -53,3 +53,6 @@ RUN cd /opt && wget --quiet \
 
 RUN curl https://storage.googleapis.com/git-repo-downloads/repo > /usr/bin/repo && \
     chmod +x /usr/bin/repo
+
+RUN /opt/ndk/build/tools/make_standalone_toolchain.py --arch arm \
+       --api 26 --install-dir /opt/android32-toolchain
